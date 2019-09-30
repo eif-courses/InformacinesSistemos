@@ -18,7 +18,7 @@ String sql = "insert into test.animal values (?,?)"; \\ Insert(..) metodas.
 PreparedStatement stmt = connection.prepareStatement("select * from test.animal"); \\ Display() metodas. 
 ```
 
-Gradle vartotojams prijungti mysql connector build.gradle faile i dependencies dali:
+Gradle naudotojams reikalinga biblioteka skirta komunikacijai su duomenų baze. Prijungti mysql connector build.gradle faile į dependencies dalį įdėti šią eilutę:
 
 dependencies {
     
@@ -26,7 +26,7 @@ dependencies {
     
 }
 
-Maven dependency idedam i POM.xml file ```<dependencies>....</dependencies> ``` tagą jeigu nėra sukurti patiems: 
+Maven naudotojam į POM.XML failą įdėti dependency ```<dependencies>....</dependencies> ``` tagą jeigu nėra sukurti patiems: 
 ```XML    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 <dependency>
     <groupId>mysql</groupId>
