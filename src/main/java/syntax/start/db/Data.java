@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Data implements AutoCloseable{
@@ -25,6 +27,7 @@ public class Data implements AutoCloseable{
     }
   }
   public static void display(){
+
     try {
       PreparedStatement stmt = connection.prepareStatement("select * from test.animal");
       ResultSet rs=stmt.executeQuery();
@@ -35,6 +38,32 @@ public class Data implements AutoCloseable{
       e.printStackTrace();
     }
   }
+
+  public static List<Object> gautiDuomenisISDB(int stupeliu_sk){
+
+    List<Object> list = new ArrayList<>();
+
+    try {
+      PreparedStatement stmt = connection.prepareStatement("select * from test.animal");
+      ResultSet rs=stmt.executeQuery();
+
+      while(rs.next()){
+        for (int i = 1; i <= stupeliu_sk; i++) {
+          if(rs.getMetaData().getColumnClassName(i).equals("java.lang.String")) {
+            list.add(rs.getString(i));
+          }
+          else{
+            list.add(rs.getInt(i));
+          }
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return list;
+  }
+
+
 
   @Override
   public void close() throws Exception {
